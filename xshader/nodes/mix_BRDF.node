@@ -1,0 +1,14 @@
+::begin inputs
+VALUE value value 0.0 1.0 0.5
+BRDF brdf1 brdf
+BRDF brdf2 brdf
+::end
+::begin outputs
+BRDF brdf brdf
+::end
+::begin shader
+color_calc_color = vec3(value, 0.0, 0.0);
+::end
+::begin colorcalc
+brdf = mix(brdf1, brdf2, color_calc_color.x);
+::end

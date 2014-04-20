@@ -16,13 +16,13 @@
 		<Node id = "7" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "pos_in" y = "73.59169" x = "-146.7265"/>
 	</Material>
 	<Material name = "Reflecting">
-		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "64.812645" x = "173.49905">
-			<NodeInput port = "0" id = "0" from = "3"/>
+		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "42.812645" x = "309.49905">
+			<NodeInput port = "0" id = "0" from = "10"/>
 		</Node>
-		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-89.24364" x = "147.38353">
-			<NodeInput port = "0" id = "0" value = "0.596341,0.570971,0.6180723" from = "6"/>
+		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "16.756363" x = "21.38353">
+			<NodeInput port = "0" id = "0" value = "0.596341,0.570971,0.6180723" from = "4"/>
 		</Node>
-		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "glossy" y = "51.400993" x = "42.557037">
+		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "glossy" y = "87.40099" x = "26.557037">
 			<NodeInput port = "0" id = "0" value = "1.0,1.0,1.0" from = "4"/>
 			<Input id = "1"/>
 		</Node>
@@ -33,7 +33,12 @@
 		</Node>
 		<Node id = "7" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "ray_dir" y = "-90.40831" x = "-176.7265"/>
 		<Node id = "8" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "depth_in" y = "-92.40831" x = "-302.7265"/>
-		<Node id = "9" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "pos_in" y = "5.59169" x = "-274.7265"/>
+		<Node id = "9" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "pos_in" y = "-8.40831" x = "-358.7265"/>
+		<Node id = "10" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "mix_BRDF" y = "27.59169" x = "161.2735">
+			<Input id = "0" value = "0.5078968"/>
+			<NodeInput port = "0" id = "1" from = "2"/>
+			<NodeInput port = "0" id = "2" from = "3"/>
+		</Node>
 		<Block name = "minecraft:iron_block"/>
 		<Block name = "minecraft:gold_block"/>
 		<Block name = "minecraft:flowing_water"/>

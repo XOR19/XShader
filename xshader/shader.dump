@@ -24,7 +24,7 @@ struct Ray{
 	int start;
 	int group;
 	bool ok;
-	vec3 color[1];
+	vec3 color[3];
 };
 
 const int SAMPLES_PER_RAY = 2048;
@@ -111,11 +111,18 @@ void color_in_id4(out vec3 color){
 color = texture2D(gBuffer_Color, getTexCoord()).rgb;
 }
 
-void glossy_id5(in vec3 color, in vec3 normal, out vec3 color_calc_color){
+void mix_BRDF_id5(in float value, out vec3 color_calc_color){
+color_calc_color = vec3(value, 0.0, 0.0);
+}
+void mix_BRDF_colorcalc_id5(in vec3 color_calc_color, in vec3 brdf1, in vec3 brdf2, out vec3 brdf){
+brdf = mix(brdf1, brdf2, color_calc_color.x);
+}
+
+void glossy_id6(in vec3 color, in vec3 normal, out vec3 color_calc_color){
 addRay(reflect(rayTracer.actualRay.dir, normalize(normal)));
 color_calc_color = color;
 }
-void glossy_colorcalc_id5(in vec3 color_calc_color, out vec3 brdf){
+void glossy_colorcalc_id6(in vec3 color_calc_color, out vec3 brdf){
 vec4 rayColor = getRayColor(0);
 brdf = rayColor.rgb*color_calc_color;
 }
@@ -137,13 +144,19 @@ out_colorcalc_id1(var1_BRDF);
 void material_mid1(){
 vec3 var1_VEC3;
 color_in_id4(var1_VEC3);
-glossy_id5(var1_VEC3, getNormal(), rayTracer.actualRay.color[0]);
+diffuse_id2(var1_VEC3, rayTracer.actualRay.color[0]);
+glossy_id6(var1_VEC3, getNormal(), rayTracer.actualRay.color[1]);
+mix_BRDF_id5(0.5, rayTracer.actualRay.color[2]);
 }
 
 void material_colorcalc_mid1(){
 vec3 var1_BRDF;
-glossy_colorcalc_id5(rayTracer.actualRay.color[0], var1_BRDF);
-out_colorcalc_id1(var1_BRDF);
+diffuse_colorcalc_id2(rayTracer.actualRay.color[0], var1_BRDF);
+vec3 var2_BRDF;
+glossy_colorcalc_id6(rayTracer.actualRay.color[1], var2_BRDF);
+vec3 var3_BRDF;
+mix_BRDF_colorcalc_id5(rayTracer.actualRay.color[2], var1_BRDF, var2_BRDF, var3_BRDF);
+out_colorcalc_id1(var3_BRDF);
 }
 
 void makeRays(in int groupID){

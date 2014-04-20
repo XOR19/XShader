@@ -1,0 +1,11 @@
+::begin inputs
+VALUE value value 0.0 1.0 0.5
+COLOR color1 color
+COLOR color2 color
+::end
+::begin outputs
+COLOR color color
+::end
+::begin shader
+color = mix(color1, color2, value.x);
+::end
