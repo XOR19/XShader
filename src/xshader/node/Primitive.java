@@ -62,6 +62,19 @@ public enum Primitive {
 				return as.getNull();
 			}
 		}
+		
+	}, BRDF("vec3", "vec3(0.0, 0.0, 0.0)"){
+		
+		@Override
+		public String makeCastTo(Primitive as, String variableName) {
+			switch(as){
+			case BRDF:
+				return variableName;
+			default:
+				return as.getNull();
+			}
+		}
+		
 	};
 	
 	private String source;
@@ -73,7 +86,7 @@ public enum Primitive {
 		this.n = n;
 	}
 	
-	protected String getNull() {
+	public String getNull() {
 		return this.n;
 	}
 

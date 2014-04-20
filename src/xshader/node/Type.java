@@ -1,5 +1,6 @@
 package xshader.node;
 
+import xshader.node.input.ConstBRDFInput;
 import xshader.node.input.ConstColorInput;
 import xshader.node.input.ConstFloatInput;
 import xshader.node.input.ConstInput;
@@ -37,11 +38,11 @@ public enum Type {
 		}
 		
 	}, 
-	BRDF(null, AS.IO, 0x359E25) {
+	BRDF(Primitive.BRDF, AS.IO, 0x359E25) {
 
 		@Override
 		public ConstInput getConstInput(Parameter parameter) {
-			return null;
+			return new ConstBRDFInput();
 		}
 		
 	},

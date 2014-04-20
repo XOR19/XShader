@@ -100,6 +100,8 @@ public class Node {
 	}
 
 	public void generateSourceColorCalc(SourceGenerator generator) {
+		if(this.nodeType.getBodyColorCalc()==null)
+			return;
 		Parameter[] inParameters = this.nodeType.getInputs();
 		for(int i=0; i<inParameters.length; i++){
 			if(this.inputs[i]!=null && inParameters[i].getType()==Type.BRDF)
@@ -108,7 +110,7 @@ public class Node {
 		Parameter[] parameters = this.nodeType.getOutputs();
 		for(int i=0; i<parameters.length; i++){
 			if(parameters[i].getType() == Type.BRDF)
-				this.outputs[i] = generator.reservateVariable(Primitive.VEC3);
+				this.outputs[i] = generator.reservateVariable(Primitive.BRDF);
 		}
 		String line = getMethodColorCalcName()+"(";
 		boolean first = true;
@@ -123,7 +125,7 @@ public class Node {
 				}else{
 					line += ", ";
 				}
-				line += this.inputs[i].getSource(generator, Primitive.VEC3);
+				line += this.inputs[i].getSource(generator, Primitive.BRDF);
 			}
 		}
 		for(int i=0; i<parameters.length; i++){

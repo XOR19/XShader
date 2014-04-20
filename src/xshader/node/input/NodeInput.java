@@ -42,6 +42,10 @@ public class NodeInput implements Input {
 	
 	@Override
 	public String getSource(SourceGenerator generator, Primitive as) {
+		Primitive p = this.node.getNodeType().getOutputs()[this.output].getType().getPrimitive();
+		if((p==Primitive.BRDF || as==Primitive.BRDF) && p!=as){
+			return as.getNull();
+		}
 		return generator.getVariableName(this.node.getOutput(this.output), as);
 	}
 
