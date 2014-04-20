@@ -1,0 +1,7 @@
+::begin outputs
+VECTOR dir dir
+::end
+
+::begin shader
+dir = (rayTracer.actualRay.dir+1.0)/2.0;
+::end

@@ -1,0 +1,11 @@
+::begin outputs
+NORMAL normal normal
+::end
+
+::begin inputs
+NORMAL innormal normal
+::end
+
+::begin shader
+normal = (reflect(rayTracer.actualRay.dir, normalize(innormal))+1.0)/2.0;
+::end

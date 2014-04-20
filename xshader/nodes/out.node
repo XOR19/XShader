@@ -1,0 +1,7 @@
+::begin inputs
+BRDF brdf brdf
+::end
+
+::begin colorcalc
+rayTracer.actualRay.finalColor = brdf;
+::end

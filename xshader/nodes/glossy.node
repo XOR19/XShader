@@ -1,0 +1,18 @@
+::begin inputs
+COLOR color color 1.0 1.0 1.0
+NORMAL normal normal
+::end
+
+::begin outputs
+BRDF brdf brdf
+::end
+
+::begin shader
+addRay(reflect(rayTracer.actualRay.dir, normalize(normal)));
+color_calc_color = color;
+::end
+
+::begin colorcalc
+vec4 rayColor = getRayColor(0);
+brdf = rayColor.rgb*color_calc_color;
+::end

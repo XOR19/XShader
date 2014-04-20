@@ -1,0 +1,7 @@
+::begin outputs
+NORMAL normal normal
+::end
+
+::begin shader
+normal = getNormal();
+::end

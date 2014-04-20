@@ -1,0 +1,7 @@
+::begin outputs
+COLOR color color
+::end
+
+::begin shader
+color = texture2D(gBuffer_Color, getTexCoord()).rgb;
+::end

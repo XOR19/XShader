@@ -1,0 +1,36 @@
+<Shader>
+	<Material name = "Default">
+		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "-22.017488" x = "193.02998">
+			<NodeInput port = "0" id = "0" from = "2"/>
+		</Node>
+		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-33.92652" x = "49.21221">
+			<NodeInput port = "0" id = "0" value = "0.0,0.35120773,1.0" from = "4"/>
+		</Node>
+		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_in" y = "-23.134888" x = "-226.17879"/>
+		<Node id = "4" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_mul" y = "4.5954475" x = "-91.625145">
+			<NodeInput port = "0" id = "0" value = "1.0,1.0,1.0" from = "3"/>
+			<Input id = "1" value = "1.0353292"/>
+		</Node>
+		<Node id = "5" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_in" y = "-49.499218" x = "-97.63567"/>
+	</Material>
+	<Material name = "Iron">
+		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "-9.187356" x = "121.499054">
+			<NodeInput port = "0" id = "0" from = "3"/>
+		</Node>
+		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-73.24364" x = "-120.61647">
+			<NodeInput port = "0" id = "0" value = "0.596341,0.570971,0.6180723" from = "6"/>
+		</Node>
+		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "glossy" y = "17.400993" x = "-99.44296">
+			<NodeInput port = "0" id = "0" value = "1.0,1.0,1.0" from = "4"/>
+			<Input id = "1"/>
+		</Node>
+		<Node id = "4" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_in" y = "34.865112" x = "-256.17877"/>
+		<Node id = "5" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_in" y = "-18.408306" x = "-366.7265"/>
+		<Node id = "6" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_conv" y = "-26.98967" x = "-227.35335">
+			<NodeInput port = "0" id = "0" from = "5"/>
+		</Node>
+		<Node id = "7" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "ray_dir" y = "-72.40831" x = "-318.7265"/>
+		<Block name = "minecraft:iron_block"/>
+		<Block name = "minecraft:gold_block"/>
+	</Material>
+</Shader>

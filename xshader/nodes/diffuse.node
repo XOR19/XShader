@@ -1,0 +1,15 @@
+::begin outputs
+BRDF brdf brdf
+::end
+
+::begin inputs
+COLOR color color 1.0 1.0 1.0
+::end
+
+::begin shader
+color_calc_color = color;
+::end
+
+::begin colorcalc
+brdf = color_calc_color;
+::end

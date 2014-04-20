@@ -1,0 +1,12 @@
+::begin outputs
+COLOR color color
+::end
+
+::begin inputs
+COLOR incolor color 1.0 1.0 1.0
+VALUE v v 0.0 2.0 1.0
+::end
+
+::begin shader
+color = incolor*v;
+::end
