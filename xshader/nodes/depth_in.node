@@ -1,0 +1,7 @@
+::begin outputs
+VALUE depth depth
+::end
+
+::begin shader
+depth = getDepth(getTexCoord());
+::end

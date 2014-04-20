@@ -1,0 +1,7 @@
+::begin outputs
+VECTOR pos pos
+::end
+
+::begin shader
+pos = rayTracer.actualRay.pos;
+::end

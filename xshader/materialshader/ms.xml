@@ -1,36 +1,48 @@
 <Shader>
 	<Material name = "Default">
-		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "-22.017488" x = "193.02998">
+		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "-4.0174885" x = "215.02998">
 			<NodeInput port = "0" id = "0" from = "2"/>
 		</Node>
-		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-33.92652" x = "49.21221">
+		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-25.926521" x = "59.21221">
 			<NodeInput port = "0" id = "0" value = "0.0,0.35120773,1.0" from = "4"/>
 		</Node>
-		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_in" y = "-23.134888" x = "-226.17879"/>
-		<Node id = "4" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_mul" y = "4.5954475" x = "-91.625145">
+		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_in" y = "-25.134888" x = "-254.17879"/>
+		<Node id = "4" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_mul" y = "-11.404552" x = "-85.625145">
 			<NodeInput port = "0" id = "0" value = "1.0,1.0,1.0" from = "3"/>
 			<Input id = "1" value = "1.0353292"/>
 		</Node>
-		<Node id = "5" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_in" y = "-49.499218" x = "-97.63567"/>
+		<Node id = "5" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_in" y = "-129.49922" x = "-67.63567"/>
+		<Node id = "6" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "depth_in" y = "-72.40831" x = "-86.7265"/>
+		<Node id = "7" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "pos_in" y = "73.59169" x = "-146.7265"/>
 	</Material>
-	<Material name = "Iron">
-		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "-9.187356" x = "121.499054">
+	<Material name = "Reflecting">
+		<Node id = "1" width = "100.0" isSmall = "true" widthSmall = "50.0" type = "out" y = "64.812645" x = "173.49905">
 			<NodeInput port = "0" id = "0" from = "3"/>
 		</Node>
-		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-73.24364" x = "-120.61647">
+		<Node id = "2" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "diffuse" y = "-89.24364" x = "147.38353">
 			<NodeInput port = "0" id = "0" value = "0.596341,0.570971,0.6180723" from = "6"/>
 		</Node>
-		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "glossy" y = "17.400993" x = "-99.44296">
+		<Node id = "3" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "glossy" y = "51.400993" x = "42.557037">
 			<NodeInput port = "0" id = "0" value = "1.0,1.0,1.0" from = "4"/>
 			<Input id = "1"/>
 		</Node>
-		<Node id = "4" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_in" y = "34.865112" x = "-256.17877"/>
-		<Node id = "5" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_in" y = "-18.408306" x = "-366.7265"/>
-		<Node id = "6" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_conv" y = "-26.98967" x = "-227.35335">
-			<NodeInput port = "0" id = "0" from = "5"/>
+		<Node id = "4" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "color_in" y = "72.86511" x = "-120.17877"/>
+		<Node id = "5" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_in" y = "5.591694" x = "-116.7265"/>
+		<Node id = "6" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "normal_conv" y = "-98.98967" x = "-43.353348">
+			<Input id = "0"/>
 		</Node>
-		<Node id = "7" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "ray_dir" y = "-72.40831" x = "-318.7265"/>
+		<Node id = "7" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "ray_dir" y = "-90.40831" x = "-176.7265"/>
+		<Node id = "8" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "depth_in" y = "-92.40831" x = "-302.7265"/>
+		<Node id = "9" width = "100.0" isSmall = "false" widthSmall = "50.0" type = "pos_in" y = "5.59169" x = "-274.7265"/>
 		<Block name = "minecraft:iron_block"/>
 		<Block name = "minecraft:gold_block"/>
+		<Block name = "minecraft:flowing_water"/>
+		<Block name = "minecraft:water"/>
+		<Block name = "minecraft:glass"/>
+		<Block name = "minecraft:ice"/>
+		<Block name = "minecraft:stained_glass"/>
+		<Block name = "minecraft:glass_pane"/>
+		<Block name = "minecraft:stained_glass_pane"/>
+		<Block name = "minecraft:packed_ice"/>
 	</Material>
 </Shader>
