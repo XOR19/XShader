@@ -18,7 +18,7 @@ public class Hooks {
 	
 	static{
 		HashMap<String, MethodHooks> hm;
-		InsnList instructions, instructions1;
+		InsnList instructions;
 		
 		methodHooks.put("net.minecraft.client.gui.GuiOptions", hm = new HashMap<String, MethodHooks>());
 		instructions = new InsnList();
@@ -59,20 +59,6 @@ public class Hooks {
 		instructions = new InsnList();
 		instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "xshader/hook/Hooks_RenderBlocks", "hook_RenderFaceZPos", "()V"));
 		hm.put("renderFaceZPos(Lnet/minecraft/block/Block;DDDLnet/minecraft/util/IIcon;)V", new MethodHooks(false, instructions, null));
-		
-		
-		methodHooks.put("net.minecraft.client.renderer.EntityRenderer", hm = new HashMap<String, MethodHooks>());
-		instructions = new InsnList();
-		instructions.add(new VarInsnNode(Opcodes.ALOAD, 0));
-		instructions.add(new VarInsnNode(Opcodes.FLOAD, 1));
-		instructions.add(new VarInsnNode(Opcodes.LLOAD, 2));
-		instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "xshader/hook/Hooks_EntityRenderer", "hook_RenderWorld_Pre", "(Lnet/minecraft/client/renderer/EntityRenderer;FJ)V"));
-		instructions1 = new InsnList();
-		instructions1.add(new VarInsnNode(Opcodes.ALOAD, 0));
-		instructions1.add(new VarInsnNode(Opcodes.FLOAD, 1));
-		instructions1.add(new VarInsnNode(Opcodes.LLOAD, 2));
-		instructions1.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "xshader/hook/Hooks_EntityRenderer", "hook_RenderWorld_Post", "(Lnet/minecraft/client/renderer/EntityRenderer;FJ)V"));
-		hm.put("renderWorld(FJ)V", new MethodHooks(false, instructions, instructions1));
 		
 	}
 

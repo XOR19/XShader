@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import xshader.gui.GuiList.IGuiListEntry;
 
 
@@ -102,7 +101,7 @@ public class GuiBlocksSelect extends GuiScreen {
 			this.in = GuiBlocksSelect.this.blocks.contains(this.name);
 		}
 
-		@SuppressWarnings("synthetic-access")
+		@SuppressWarnings({ "synthetic-access", "hiding" })
 		@Override
 		public void drawEntry(int index, int x, int y, int width, int heigth, Tessellator tessellator, int var7, int var8, boolean var9) {
 			Item item = Item.getItemFromBlock(this.block);

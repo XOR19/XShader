@@ -17,12 +17,6 @@ import xshader.gui.node.GuiNodePin;
 import xshader.gui.node.GuiNodes;
 import xshader.node.Node;
 import xshader.node.NodeGroup;
-import xshader.node.NodeType;
-import xshader.node.Parameter;
-import xshader.node.Type;
-import xshader.node.input.ConstColorInput;
-import xshader.node.input.ConstFloatInput;
-import xshader.node.input.ConstInput;
 import xshader.node.input.Input;
 import xshader.node.input.NodeInput;
 
@@ -66,6 +60,7 @@ public class GuiNodeLayer {
 		this.bottom = bottom;
 	}
 	
+	@SuppressWarnings("unused")
 	public void drawLayer(int par1, int par2, float par3, FontRenderer fontRenderer) {
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_BLEND);
@@ -94,6 +89,7 @@ public class GuiNodeLayer {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
 	}
 	
+	@SuppressWarnings({ "unused", "hiding" })
 	private void drawNodes(FontRenderer fontRenderer){
 		List<GuiNode> list = this.nodes.getNodes();
 		for(int i=list.size()-1; i>=0; i--){
@@ -147,128 +143,6 @@ public class GuiNodeLayer {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 	
-	private static void drawNode(Node node, FontRenderer fontRenderer, int k){
-		float x = node.getXPos();
-		float y = node.getYPos();
-		float w = node.getWidth();
-		NodeType nodeType = node.getNodeType();
-		Parameter[] inParameter = nodeType.getInputs();
-		Parameter[] outParameter = nodeType.getOutputs();
-		Parameter[] confParameter = nodeType.getConfigurations();
-		Input[] inputs = node.getInputs();
-		ConstInput[] configurations = node.getConigurations();
-		float h = (1+inParameter.length+outParameter.length+confParameter.length)*10;
-		String title = node.getCustomText();
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glColor3f(1, 1, 1);
-		Tessellator tessellator = Tessellator.instance;
-		tessellator.startDrawingQuads();
-		if(k==-1){
-			tessellator.setColorRGBA_F(0.1f, 0.1f, 0.1f, 0.5f);
-		}else if(k==0){
-			tessellator.setColorRGBA_F(0.9f, 0.7f, 0.1f, 0.5f);
-		}else{
-			tessellator.setColorRGBA_F(0.9f, 0.2f, 0.1f, 0.5f);
-		}
-        tessellator.addVertex(x, y+10, 0.0D);
-        tessellator.addVertex(x+w, y+10, 0.0D);
-        tessellator.addVertex(x+w, y, 0.0D);
-        tessellator.addVertex(x, y, 0.0D);
-        tessellator.setColorRGBA_F(0.5f, 0.5f, 0.5f, 0.5f);
-        tessellator.addVertex(x, y+h, 0.0D);
-        tessellator.addVertex(x+w, y+h, 0.0D);
-        tessellator.addVertex(x+w, y+10, 0.0D);
-        tessellator.addVertex(x, y+10, 0.0D);
-        float p = 15+y;
-		for(int i=0; i<outParameter.length; i++){
-			int color = outParameter[i].getType().getColor();
-			tessellator.setColorRGBA_I(color, 128);
-	        tessellator.addVertex(x+w-2, p+2, 0.0D);
-	        tessellator.addVertex(x+w+2, p+2, 0.0D);
-	        tessellator.addVertex(x+w+2, p-2, 0.0D);
-	        tessellator.addVertex(x+w-2, p-2, 0.0D);
-			p+=10;
-		}
-		for(int i=0; i<confParameter.length; i++){
-			drawConstInput(configurations[i], tessellator, x, p, w);
-			p+=10;
-		}
-		for(int i=0; i<inParameter.length; i++){
-			Type t = inParameter[i].getType();
-			int color = t.getColor();
-			tessellator.setColorRGBA_I(color, 128);
-	        tessellator.addVertex(x-2, p+2, 0.0D);
-	        tessellator.addVertex(x+2, p+2, 0.0D);
-	        tessellator.addVertex(x+2, p-2, 0.0D);
-	        tessellator.addVertex(x-2, p-2, 0.0D);
-	        drawConstInput(inputs[i], tessellator, x, p, w);
-			p+=10;
-		}
-        tessellator.draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		drawString(title, x+5, y+1, w-10, 10, 0, fontRenderer);
-		p = 11+y;
-		for(int i=0; i<outParameter.length; i++){
-			drawString(outParameter[i].getName(), x+5, p, w-10, 10, 1, fontRenderer);
-			p+=10;
-		}
-		for(int i=0; i<confParameter.length; i++){
-			drawString(confParameter[i].getName(), x+5+getConstInputStringStart(configurations[i]), p, w-10, 10, 0, fontRenderer);
-			p+=10;
-		}
-		for(int i=0; i<inParameter.length; i++){
-			drawString(inParameter[i].getName(), x+5+getConstInputStringStart(inputs[i]), p, w-10, 10, -1, fontRenderer);
-			p+=10;
-		}
-	}
-	
-	private static float getConstInputStringStart(Input input){
-		if(input instanceof ConstColorInput){
-			return 14;
-		}else if(input instanceof ConstFloatInput){
-			return 4;
-		}
-		return 0;
-	}
-	
-	private static void drawConstInput(Input input, Tessellator tessellator, float x, float y, float w){
-		if(input instanceof ConstColorInput){
-			ConstColorInput cci = (ConstColorInput)input;
-			tessellator.setColorRGBA_F(cci.getRed(), cci.getGreen(), cci.getBlue(), 1.0f);
-			tessellator.addVertex(x+4, y+4, 0);
-			tessellator.addVertex(x+14, y+4, 0);
-			tessellator.addVertex(x+14, y-4, 0);
-			tessellator.addVertex(x+4, y-4, 0);
-		}else if(input instanceof ConstFloatInput){
-			tessellator.setColorRGBA_F(0.2f, 0.2f, 0.2f, 0.8f);
-			tessellator.addVertex(x+4, y+4, 0);
-			tessellator.addVertex(x+w-4, y+4, 0);
-			tessellator.addVertex(x+w-4, y-4, 0);
-			tessellator.addVertex(x+4, y-4, 0);
-		}
-	}
-	
-	private static void drawString(String text, float x, float y, float w, float h, int align, FontRenderer fontRenderer){
-		String t = text;
-		float wi = fontRenderer.getStringWidth(t);
-		if(wi>w){
-			wi = w-fontRenderer.getStringWidth("...");
-			t = fontRenderer.trimStringToWidth(t, (int)(wi))+"...";
-		}
-		wi = fontRenderer.getStringWidth(t);
-		GL11.glPushMatrix();
-		if(align==0){
-			GL11.glTranslatef(x+w/2-wi/2, y, 0);
-		}else if(align==-1){
-			GL11.glTranslatef(x, y, 0);
-		}else if(align==1){
-			GL11.glTranslatef(x+w-wi, y, 0);
-		}
-		fontRenderer.drawString(t, 0, 0, 0xFFFFFFFF);
-		GL11.glPopMatrix();
-	}
-	
 	private static void drawGrid(){
 		GL11.glLineWidth(1);
 		Tessellator tessellator = Tessellator.instance;
@@ -309,6 +183,7 @@ public class GuiNodeLayer {
         GL11.glLineWidth(1);
 	}
 	
+	@SuppressWarnings("hiding")
 	public void mouseClicked(int x, int y, int which) {
 		this.which = which;
 		this.clickedX = x;
@@ -361,6 +236,7 @@ public class GuiNodeLayer {
 		}
 	}
 	
+	@SuppressWarnings({ "unused", "hiding" })
 	public void mouseMovedOrUp(int x, int y, int which) {
 		if(this.dragPin!=null){
 			int tx = (this.right-this.left)/2;
@@ -379,6 +255,7 @@ public class GuiNodeLayer {
 		this.dragPin = null;
 	}
 
+	@SuppressWarnings({ "hiding", "unused" })
 	public void mouseClickMove(int x, int y, int which, long time) {
 		if(which==2){
 			this.x += (x-this.clickedX)/this.scroll;
@@ -402,6 +279,7 @@ public class GuiNodeLayer {
 		this.clickedY = y;
 	}
 
+	@SuppressWarnings("unused")
 	public void mouseWheel(int i, int j, int wheel) {
 		if(wheel>0){
 			this.scroll*=1.1;

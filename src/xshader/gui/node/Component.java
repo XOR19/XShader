@@ -46,10 +46,12 @@ public abstract class Component {
 		return this.parent==null?getY():getY()+this.parent.getRealY();
 	}
 	
+	@SuppressWarnings("unused")
 	public void mouseDown(float x, float y, int which) {
 		//
 	}
 	
+	@SuppressWarnings("unused")
 	public void mouseClickMove(float x, float y, int which) {
 		//
 	}

@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 public class Texture {
 
+	@SuppressWarnings("unused")
 	public static int createTexture(int width, int height, int type, int readType){
 		return createTexture(width, height, readType, readType, GL11.GL_LINEAR, GL11.GL_LINEAR);
 	}

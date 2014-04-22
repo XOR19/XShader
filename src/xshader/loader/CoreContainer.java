@@ -3,7 +3,9 @@ package xshader.loader;
 import java.io.File;
 import java.util.ArrayList;
 
+import net.minecraftforge.common.config.Configuration;
 import xshader.Init;
+import xshader.Settings;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
@@ -12,6 +14,8 @@ import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
 
 
 public class CoreContainer extends DummyModContainer {
@@ -36,6 +40,15 @@ public class CoreContainer extends DummyModContainer {
 	public boolean registerBus(EventBus bus, LoadController controller){
 		bus.register(this);
 		return true;
+	}
+	
+	@SuppressWarnings("static-method")
+	@Subscribe
+	public void preInit(FMLPreInitializationEvent event){
+		if(event.getSide()==Side.SERVER){
+			throw new RuntimeException();
+		}
+		Settings.loadFrom(new Configuration(event.getModConfigurationDirectory()));
 	}
 	
 	@SuppressWarnings({ "static-method", "unused" })

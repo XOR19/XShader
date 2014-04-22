@@ -9,6 +9,7 @@ import xshader.tessellator.ITessellator;
 
 public class Hooks_RenderBlocks {
 	
+	@SuppressWarnings("unused")
 	public static void hook_RenderBlockByRenderType(RenderBlocks renderBlocks, Block block, int x, int y, int z){
 		Integer materialID = Globals.blockMaterial.get(Block.blockRegistry.getNameForObject(block));
 		int mid = 0;

@@ -82,11 +82,11 @@ public class GuiColorPicker extends Component{
 	}
 	
 	private static float c(int i){
-		i = i%30;
-		if(i<10){
-			return i/10.0f;
-		}else if(i<20){
-			return (20-i)/10.0f;
+		int ii = i%30;
+		if(ii<10){
+			return ii/10.0f;
+		}else if(ii<20){
+			return (20-ii)/10.0f;
 		}
 		return 0;
 	}

@@ -18,7 +18,6 @@ import xshader.xml.XMLLoader;
 public class Init {
 	
 	public static void init(){
-		Forge.init();
 		NodeList.loadFrom(new File(Utils.getXShaderDir(), "nodes"));
 		Globals.materialShader = new MaterialShader();
 		try {

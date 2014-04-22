@@ -35,6 +35,7 @@ public class TransformerClassReplacer implements IClassTransformer {
 	
 	static{
 		overridings.put("net.minecraft.client.renderer.Tessellator", "xshader.replace.Tessellator");
+		overridings.put("net.minecraft.client.renderer.EntityRenderer", "xshader.replace.EntityRenderer");
 	}
 	
 	@Override
